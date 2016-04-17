@@ -8,11 +8,14 @@ function setup() {
 
 function draw() {
   var rand;
+  var y;
   for (var x = 0; x < width; x++)
   {
     rand = random (0, TWO_PI);
-    translate (x, height/2 + randomGaussian() * height/2);
+    y = height/2 + randomGaussian() * 10;
+    translate (x, y);
     rotate (random (0, TWO_PI));
+    //print(x + ',' + y);
     myGrid.display();
   }
 
@@ -36,19 +39,30 @@ function Grid( w, h ) {
       stroke(255, 30); // white, 30% opaque
     }
     else {
-      stroke(1);
+      stroke(1); // black
+      //print ('printing black');
     }
     if ( (r1 < (this.rand/100)) && (r1 > (-this.rand/100)) ) {
       stroke(255,0,0, 70);
     }
 
-    // drow horizontals
+    // draw horizontals
     for (var y = 0; y <= this.gRows; y++) {
-      line(0+this.r(), y * (this.gHeight + this.r()*this.n)/this.gRows + this.r(), this.gWidth + this.r(), y * (this.gHeight + this.r()*this.n)/this.gRows + this.r() );
+      var x1 = 0 + this.r();
+      var y1 = (y+1) * (this.gHeight + this.r() * this.n) / this.gRows + this.r();
+      var x2 = this.gWidth + this.r();
+      var y2 = y * (this.gHeight + this.r() * this.n) / this.gRows + this.r();
+      line(x1, y1, x2, y2 );
+      //print('row loop ' + y + ', x1 = ' + x1 + ', y1 = ' + y1 + ', x2 = ' + x2 + ', y2 = ' + y2);
     }
-    // drow verticals
-    for (var x = 0; x <= this.gRows; x++) {
-      line(x * (this.gWidth + this.r()*this.n)/this.gColumns + this.r(), 0 + this.r(), x * this.gWidth/this.gRows + this.r(), (this.gWidth + this.r()*this.n) +this.r() );
+    // draw verticals
+    for (var x = 0; x <= this.gColumns; x++) {
+      var x1 = (x+1) * (this.gWidth + this.r() * this.n) / this.gColumns + this.r();
+      var y1 = 0 + this.r();
+      var x2 = (x+1) * this.gWidth/this.gRows + this.r();
+      var y2 = (this.gWidth + this.r()*this.n) +this.r();
+      line(x1, y1, x2, y2);
+      //print('column loop ' + x + ', x1 = ' + x1 + ', y1 = ' + y1 + ', x2 = ' + x2 + ', y2 = ' + y2);
     }
   }
 
