@@ -1,2 +1,12 @@
-body { background: black; color: gray; }
-canvas { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+html {
+  font-family: sans-serif;
+}
+body {
+  background: black; color: gray;
+}
+p {
+  text-align: center;
+}
+canvas {
+  position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+}
